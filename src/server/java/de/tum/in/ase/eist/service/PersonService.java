@@ -16,7 +16,10 @@ public class PersonService {
     }
 
     public Person savePerson(Person person) {
-        var optionalPerson = persons.stream().filter(existingPerson -> existingPerson.getId().equals(person.getId())).findFirst();
+        var optionalPerson = persons.stream()
+                                                    .filter(existingPerson -> existingPerson.getId()
+                                                                                            .equals(person.getId()))
+                                                                                            .findFirst();
         if (optionalPerson.isEmpty()) {
             person.setId(UUID.randomUUID());
             persons.add(person);
@@ -34,8 +37,10 @@ public class PersonService {
         this.persons.removeIf(person -> person.getId().equals(personId));
     }
 
-    public List<Person> getAllPersons(PersonSortingOptions sortingOptions) {
+    public List<Person> getAllPersons(PersonSortingOptions.SortField sortField, PersonSortingOptions.SortingOrder sortingOrder) {
         // TODO Part 3: Add sorting here
+        PersonSortingOptions.setSortField(sortField);
+        PersonSortingOptions.setSortingOrder(sortingOrder);
         return new ArrayList<>(this.persons);
     }
 }
