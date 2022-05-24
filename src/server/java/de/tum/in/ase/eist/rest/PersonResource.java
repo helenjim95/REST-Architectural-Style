@@ -46,7 +46,7 @@ public class PersonResource {
     @GetMapping("persons")
     public ResponseEntity<List<Person>> getAllPersons(@RequestParam("sortField") PersonSortingOptions.SortField sortField,
                                                       @RequestParam("sortingOrder") PersonSortingOptions.SortingOrder sortingOrder) {
-        if (!"sortField".equals(sortField) && !"sortingOrder".equals(sortingOrder)) {
+        if (!"sortField".equals(sortField) || !"sortingOrder".equals(sortingOrder)) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(personService.getAllPersons(sortField, sortingOrder));
