@@ -39,8 +39,9 @@ public class PersonService {
 
     public List<Person> getAllPersons(PersonSortingOptions.SortField sortField, PersonSortingOptions.SortingOrder sortingOrder) {
         // TODO Part 3: Add sorting here
-        PersonSortingOptions.setSortField(sortField);
-        PersonSortingOptions.setSortingOrder(sortingOrder);
+        PersonSortingOptions personSortingOptions = new PersonSortingOptions();
+        personSortingOptions.setSortField(sortField);
+        personSortingOptions.setSortingOrder(sortingOrder);
         return new ArrayList<>(this.persons);
     }
 }
